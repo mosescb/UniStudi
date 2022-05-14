@@ -1,0 +1,27 @@
+<div class="home-page">
+    <div class="row" style="height:89.8vh">
+        <div class="col-md-4"></div>
+        <div class="col-md-4" style="margin-top:20vh;">
+        <mat-card style="background-color:aliceblue;">
+            <mat-card-title>About UniStudi:</mat-card-title>
+            <mat-card-subtitle>We would like to know you as well :)</mat-card-subtitle>
+            <mat-card-content>
+                We, UniStudi, care about the difficulties students face at the beginning of  course at the university 
+                to the end of studies ("UniStudi is your all time Buddie at UNI") .<br> 
+                This platform is for everyone to keep yourself aware and up-to-date with all the information like Course, 
+                Student groups - Fachgruppe,  Uni-Tree; Extra-curicular activities, events, trainigs, Company visits and 
+                other organised at the Uni, Interactive chat with the Fachgruppe and the fellow students, obvioulsy, 
+                Job portal for HiWis, Werkstudent/-in, Praktikant/-in and Full-time jobs as well.<br>
+                <i>Doesn't it sound LEGEN-DARY! </i><br>
+                You just have to register on UniStudi to get all the updates aboout the above said things and would help you during the course of your study.
+                <br><strong>BY US || TO US || FOR US</strong>
+            </mat-card-content>
+            <mat-card-actions align="end">
+                <button pButton class="p-button-primary" (click)="login()" *ngIf="!auth.isLoggednIn()" label="Get Started"></button>
+              </mat-card-actions>
+        </mat-card>
+        </div>
+        <div class="col-md-4"></div>
+    </div>
+</div>
+  <router-outlet></router-outlet>

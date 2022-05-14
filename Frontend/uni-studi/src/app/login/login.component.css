@@ -1,0 +1,104 @@
+.login-page {
+    width: 100%;
+    margin: auto;
+  }
+  
+  .container {
+    width:400px;
+    height:300px;
+    padding-bottom: 100px;
+  }
+  
+  .form1 {
+    position:relative;
+    padding-top:15vw;
+    padding-left:15vw;
+    padding-right:20vw;
+    width: 100vh;
+    height: 100vh;
+    margin: 0 auto 0px;
+    text-align: center;
+  }
+  
+  .error {
+      color: salmon;
+      font-size: 14px;
+      text-align: left;
+      padding-left: 5px;
+  }
+  
+  .form1 input {
+      font-family: "Georgia";
+      background: #f2f2f2;
+      width: 300px;
+      margin-left: 25px;
+      height: 30px;
+      box-sizing: border-box;
+      font-size: 18px;
+  }
+  
+  .form1 label {
+      padding-top: 10px;
+      width: 100%;
+      text-align: left;
+      margin-left: 25px;
+      font-size: 15px;
+  }
+  
+  .form1 button {
+      font-family: "Georgia";
+      text-transform: uppercase;
+      background: #4caf50;
+      width: 16vw;
+      border-color: #4caf50;
+      padding: 10px;
+      color: #ffffff;
+      font-size: 1vw;
+      cursor: pointer;
+      margin-top: 15px;
+  }
+  
+  .form1 button:hover, .form1 button:active {
+      background: #43a047;
+      border-color: #4caf50;
+  }
+  
+  .form1 .message {
+    margin: 15px 0 0;
+    color: #00001a;
+    font-size: 12px;
+  }
+  
+  .form1 .message a {
+    color: #4caf50;
+    text-decoration: none;
+  }
+  
+  .p{
+    color:#00001a;
+  }
+  
+  body { 
+    font-family: Roboto, Arial, sans-serif;
+    margin: 0;
+  }
+  
+  .basic-container {
+    padding: 30px;
+    background-color: red;
+  }
+  
+  .version-info {
+    font-size: 8pt;
+    float: right;
+  }
+  .my-panel{
+    color:black;
+  }
+
+  .login-page {
+    width: 100%;
+    background: url("/assets/giphy.gif");
+    /* background-color: black; */
+    margin: auto;
+  }

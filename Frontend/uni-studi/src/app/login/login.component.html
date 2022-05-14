@@ -1,0 +1,34 @@
+<div class="login-page">
+<div class="row" style="height:89.8vh">
+    <div class="col-md-4"></div>
+    <div class="col-md-4" style="margin-top:20vh;">
+      <mat-card>
+        <mat-card-title>Login</mat-card-title>
+        <mat-card-subtitle>Please Login to go ahead :)</mat-card-subtitle>
+        <mat-card-content>
+            <form [formGroup]="loginForm" (submit)="onSubmit()">
+                <div class="form-group">
+                  <label style="padding-top:30px;">User Name</label>
+                  <input type="text" formControlName="uname" [(ngModel)]="uname" class="form-control" [ngClass]="{ 'is-invalid': submitted && formValidation.uname.errors }"/>
+                  <div *ngIf="submitted && formValidation.uname.errors" class="invalid-feedback">
+                    <div *ngIf="formValidation.uname.errors.required" class="error">Username is required</div>
+                  </div>
+                  <label>Password</label>
+                    <input type="password" formControlName="password" [(ngModel)]="password" class="form-control"
+                    [ngClass]="{ 'is-invalid': submitted && formValidation.password.errors }" />
+                  <!-- Form Validation Check to display proper authentication messages on GUI -->
+                  <div *ngIf="submitted && formValidation.password.errors" class="invalid-feedback">
+                    <div *ngIf="formValidation.password.errors.required" class="error">Password is required</div>
+                  </div>
+                  <div class="error">{{ invaliduname }}</div>
+                  <br>
+                  <button class="btn btn-primary">Login</button>
+                </div>
+              </form>
+        </mat-card-content>
+      </mat-card>
+    </div>
+    <div class="col-md-4"></div>
+  </div>
+</div>
+  <router-outlet></router-outlet>

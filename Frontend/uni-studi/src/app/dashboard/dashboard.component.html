@@ -1,0 +1,33 @@
+<div class="grid-container">
+  <div class="row" style="margin-bottom:10px">
+    <div class="col-md-12"
+      style="background-color:rgb(117, 189, 241);border-radius:2px;padding:10px;text-align: center;"
+      (click)="openChecklist()">
+      Visit Checklist
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12"
+      style="background-color:rgb(117, 189, 241);border-radius:2px;padding:10px;margin-bottom: 20px;"
+      (click)="openFGDashboard()">
+      <p-card header="FachGruppe (Student Group)" subheader="Get to know the student representatives" [style]="{width: '100%'}"
+        styleClass="p-card-shadow">
+        <p>Did you know that each department at University of Stuttgart has a group of students to represent your course of study?
+          If you're curious and want to know more about the activities organized by them, then <strong>dive in</strong> to have a quick chat with them
+          or checkout their news bulletin. They may have something exciting planned for you.
+        </p>
+      </p-card>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12"
+      style="background-color:rgb(117, 189, 241);border-radius:2px;padding:10px;">
+      <p-card header="University News" subheader="Lets see what is happening around in the University" [style]="{width: '100%'}"
+        styleClass="p-card-shadow">
+        <ul *ngFor="let news of uniNews">
+          <li>{{news}}</li>
+        </ul>
+      </p-card>
+    </div>
+  </div>
+</div>

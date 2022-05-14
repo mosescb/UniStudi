@@ -1,0 +1,9 @@
+<mat-toolbar color="primary">
+      <div class="col-sm-10 col-xs-10"><span><a routerLink="/" routerLinkActive="active" style="text-decoration: none;color:white">UniStudi&emsp;</a></span></div>
+
+      <div class="col-sm-2 col-xs-2" style="text-align: right;">
+        <button pButton pRipple type="button" icon="pi pi-sign-in" class="p-button-rounded p-button-warning" (click)="login()" *ngIf="!auth.isLoggednIn()"></button>
+        <button pButton pRipple type="button" icon="pi pi-home" class="p-button-rounded p-button-warning" (click)="dashboard()" *ngIf="auth.isLoggednIn()"></button>
+        <button pButton pRipple type="button" icon="pi pi-sign-out" class="p-button-rounded p-button-warning" (click)="logout()" *ngIf="auth.isLoggednIn()" style="margin-left:5px;"></button>
+      </div>
+    </mat-toolbar>
