@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 ###############################################################################
 #
 # UniStudi Backend
@@ -10,7 +9,6 @@
 #--------------------------------------
 # I M P O R T S
 #--------------------------------------
-import json
 import mysql.connector as mysql
 from mysql.connector   import Error
 from flask             import Flask,json,request
