@@ -41,52 +41,145 @@ CORS(app)
 
 
 #--------------------------------------
+# HELPER METHOD   execute_sql_cmd()
+#--------------------------------------
+def execute_sql_cmd(cursor, query):
+    # print(query)
+    cursor.execute(query)
+
+
+#--------------------------------------
 # LOGIN  BASEURL/login
 #--------------------------------------
 @app.route("/login",methods=["POST"])
 def login():
-    uname = request.get_json()["uname"]
-    password = request.get_json()["password"]
-    result = "incorrect"
+    status = "incorrect"
     try:
+        # Get uname and password from http post method
+        uname = request.get_json()["uname"]
+        password = request.get_json()["password"]
+
+        # Connect to the Database
         conn = mysql.connect(host=HOST, database=DATABASE, user=USER, password=PASSWORD)
         cursor = conn.cursor()
+
+        # Check login details in the DB
         query = "SELECT * FROM "+LOGIN_TABLE+" where userName = '"+uname+"' AND userPass = '"+password+"'"
-        print(query)
-        cursor.execute(query)
+        execute_sql_cmd(cursor, query)
         row = cursor.fetchone()
         if(row != None):
-            result = "correct"
+            status = "correct"
+
+        # Close the opened connection
+        conn.close()
+
     except Error as e:
         print("SQL Error: "+str(e))
-        return result
-    conn.close()
-    return result
+        return status
+
+    return status
+
 
 
 #--------------------------------------
 # CHECKLIST  BASEURL/checklist
 #--------------------------------------
-@app.route("/checklist",methods=["GET"])
-def getChecklist():
-    json_data=[]
+@app.route("/checklist",methods=["POST"])
+def get_checklist():
+    json_data = []
     try:
+        # Get uname from http post method
+        uname = request.get_json()["uname"]
+
+        # Connect to the Database
         conn = mysql.connect(host=HOST, database=DATABASE, user=USER, password=PASSWORD)
         cursor = conn.cursor()
-        query = "select * from " + CHECKLIST_TABLE
-        print(query)
-        cursor.execute(query)
-        row_headers=[x[0] for x in cursor.description] #this will extract row headers
+
+        # Obtain UID corresponding to the username
+        query = "select uid from " + LOGIN_TABLE + " where userName = '" + uname + "'"
+        execute_sql_cmd(cursor, query)
+        rv = cursor.fetchone()
+        obtained_uid = int(rv[0])
+
+        # Obtain CIDs corresponding to the selected UID
+        query = "select cid from " + USER_CHECKLIST_TABLE + " where uid = " + str(obtained_uid)
+        execute_sql_cmd(cursor, query)
+        row_headers=[x[0] for x in cursor.description]
+        cid_tuples = cursor.fetchall()
+
+        # Obtain CID, SUBJECT, STATUS to give to FRONTEND
+        # Default Status to False
+        query = "select cid, subject, False as Status from " + CHECKLIST_TABLE
+        execute_sql_cmd(cursor, query)
+        row_headers=[x[0] for x in cursor.description]
         rv = cursor.fetchall()
-        json_data = []
         for result in rv:
             json_data.append(dict(zip(row_headers,result)))
+
+        # Create a list of CIDs that have checked the CheckBoxes
+        cid_list = list()
+        for cid_tup in cid_tuples:
+            cid_list.append(cid_tup[0])
+
+        # Make the Status of those selected CheckBoxes
+        # for a given CID in the list of CIDs1
+        for element in json_data:
+            if(element["cid"] in cid_list):
+                element["Status"] = 1
+
+        # Close the opened connection
+        conn.close()
+
     except Error as e:
         print("SQL Error: "+str(e))
-        return "Failed"
-    conn.close()
-    print(json.dumps(json_data))
+
     return json.dumps(json_data)
+
+
+#--------------------------------------
+# CHECKLIST  BASEURL/checklist
+#--------------------------------------
+@app.route("/saveChecklist",methods=["POST"])
+def save_checklist():
+    status = "failed"
+    try:
+        # Get uname and cid list from http post
+        uname = request.get_json()["uname"]
+        cid_list = request.get_json()["cid"]
+
+        # Connect to the Database
+        conn = mysql.connect(host=HOST, database=DATABASE, user=USER, password=PASSWORD)
+        cursor = conn.cursor()
+
+        # Obtain UID corresponding to the username 
+        query = "select uid from " + LOGIN_TABLE + " where userName = '" + uname + "'"
+        execute_sql_cmd(cursor, query)
+
+        # fetchone because it is currently assumed that name is unique and has obviously one id then.
+        rv = cursor.fetchone()
+        obtained_uid = int(rv[0])
+
+        # Reset checklist for given UID
+        query = "delete from " + USER_CHECKLIST_TABLE + " where uid = " + str(obtained_uid)
+        execute_sql_cmd(cursor, query)
+
+        # Set Checklist items for the given set of CIDs(checklist ids)
+        for cid in cid_list:
+            query = "insert into " + USER_CHECKLIST_TABLE + " values(" + str(obtained_uid) + ", " + str(cid) + ")"
+            execute_sql_cmd(cursor, query)
+
+        # Commit the transaction
+        conn.commit()
+        status = "success"
+
+        # Close the opened connection
+        conn.close()
+
+    except Error as e:
+        print("SQL Error: "+str(e))
+        return status
+
+    return status
 
 
 #--------------------------------------
