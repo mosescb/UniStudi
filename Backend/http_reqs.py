@@ -5,32 +5,34 @@
 #
 # Author: Moses Christopher Bollavarapu <moseschristopherb@gmail.com>
 #
-# TODO: Remove duplicate code
-# TODO: Generalize and Modularize
-#
 ###############################################################################
 
 #--------------------------------------
 # I M P O R T S
 #--------------------------------------
+import json
 import mysql.connector as mysql
 from mysql.connector   import Error
 from flask             import Flask,json,request
 from flask_cors        import CORS
-import json
+from obtain_configs    import BackendConfig
 
 
 #--------------------------------------
 # G L O B A L   O B J E C T S
 #--------------------------------------
+CONFIG_FILE_PATH     = ".config"
+
 app                  = Flask(__name__)
-HOST                 = "127.0.0.1"
-USER                 = "oswald"
-PASSWORD             = "mysql"
-DATABASE             = "unistudiDb"
-LOGIN_TABLE          = "usLoginTable"
-CHECKLIST_TABLE      = "usChecklistTable"
-USER_CHECKLIST_TABLE = "usUserChecklistTable" 
+config               = BackendConfig(CONFIG_FILE_PATH) 
+
+HOST                 = config.get_db_location()
+USER                 = config.get_db_user()
+PASSWORD             = config.get_db_pass()
+DATABASE             = config.get_db_name()
+LOGIN_TABLE          = config.get_login_table()
+CHECKLIST_TABLE      = config.get_checklist_table()
+USER_CHECKLIST_TABLE = config.get_user_checklist_table()
 
 
 #--------------------------------------
