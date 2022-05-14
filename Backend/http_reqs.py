@@ -24,6 +24,7 @@ CONFIG_FILE_PATH     = ".config"
 app                  = Flask(__name__)
 config               = BackendConfig(CONFIG_FILE_PATH) 
 
+SERVER               = config.get_server_location()
 HOST                 = config.get_db_location()
 USER                 = config.get_db_user()
 PASSWORD             = config.get_db_pass()
@@ -92,4 +93,4 @@ def getChecklist():
 # R U N
 #--------------------------------------
 def run():
-    app.run(host="0.0.0.0")
+    app.run(host=SERVER)
