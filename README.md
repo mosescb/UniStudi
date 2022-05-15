@@ -59,3 +59,9 @@ Run Backend/main.py on a server(e.g. RPi)
 Install unistudi.apk on android phone
 (or)
 Run a web application
+
+
+Use following login details(temporary):
+- user: moses
+- password: testpass
+
