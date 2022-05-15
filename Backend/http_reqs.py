@@ -33,7 +33,7 @@ LOGIN_TABLE          = config.get_login_table()
 CHECKLIST_TABLE      = config.get_checklist_table()
 USER_CHECKLIST_TABLE = config.get_user_checklist_table()
 FGLIST_TABLE         = config.get_fg_list_table()
-
+FGNEWSLIST_TABLE     = config.get_fg_news_list_table()
 
 #--------------------------------------
 # C O R S
@@ -194,7 +194,38 @@ def get_fglist():
         conn = mysql.connect(host=HOST, database=DATABASE, user=USER, password=PASSWORD)
         cursor = conn.cursor()
 
+        # Obtain data from FG list table
         query = "select * from  " + FGLIST_TABLE
+        execute_sql_cmd(cursor, query)
+        row_headers=[x[0] for x in cursor.description]
+        rv = cursor.fetchall()
+        for result in rv:
+            json_data.append(dict(zip(row_headers,result)))
+
+        # Close the opened connection
+        conn.close()
+
+    except Error as e:
+        print("SQL Error: "+str(e))
+
+    return json.dumps(json_data)
+
+
+#--------------------------------------
+# FGNEWSLIST  BASEURL/fgnewslist
+#--------------------------------------
+@app.route("/fgnewslist",methods=["POST"])
+def get_fgnewslist():
+    json_data = []
+    try:
+        fgid = request.get_json()["fgid"]
+
+        # Connect to the Database
+        conn = mysql.connect(host=HOST, database=DATABASE, user=USER, password=PASSWORD)
+        cursor = conn.cursor()
+
+        # Obtain news-subject and link from the FG News table
+        query = "select news, link from " + FGNEWSLIST_TABLE + " where fgid = " + str(fgid)
         execute_sql_cmd(cursor, query)
         row_headers=[x[0] for x in cursor.description]
         rv = cursor.fetchall()

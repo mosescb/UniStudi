@@ -49,6 +49,7 @@ class BackendConfig():
                         self._tables_checklist = config['TABLES']['Checklist']
                         self._tables_userchecklist = config['TABLES']['UserChecklist']
                         self._tables_fglist = config['TABLES']['FGList']
+                        self._tables_fgnewslist = config['TABLES']['FGNewsList']
 
                 except:
                         print("Failed to obtain data from config file")
@@ -81,3 +82,6 @@ class BackendConfig():
 
         def get_fg_list_table(self):
                 return self._tables_fglist
+
+        def get_fg_news_list_table(self):
+                return self._tables_fgnewslist
