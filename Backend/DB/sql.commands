@@ -34,3 +34,22 @@ insert into usFGTable values(9, "Fachgruppe Maschinelle Sprachverarbeitung und C
 insert into usFGTable values(10, "Fachgruppe Simulation Technology", "https://simtech.stuvus.uni-stuttgart.de/");
 insert into usFGTable values(11, "Fachgruppe Linguistik", "https://linguistik.stuvus.uni-stuttgart.de/");
 insert into usFGTable values(12, "Fachgruppe Kunstgeschichte", "https://kunstgeschichte.stuvus.uni-stuttgart.de/");
+
+
+create table usFGNewsTable(newsid int PRIMARY KEY AUTO_INCREMENT, fgid int NOT NULL, news varchar(2000) NOT NULL, link varchar(500), FOREIGN KEY (fgid) REFERENCES usFGTable(fgid));
+insert into usFGNewsTable(fgid, news, link) values(1, "FIUS Hackathon starting on Friday 13.05.2022", "https://fius.de/index.php/2022/05/12/infos-zum-hackathon/");
+insert into usFGNewsTable(fgid, news, link) values(1, "Informatik Kontaktmesse on Wednesday 18.05.2022", "https://www.informatik-forum.org/kontaktmesse/studis");
+insert into usFGNewsTable(fgid, news, link) values(2, "Sign up for Keysight Workshop on 12.5.2022", "https://fs-ei.de/workshop.php");
+insert into usFGNewsTable(fgid, news, link) values(2, "Open Doors Day at Keysight Technologies on 05.07.2022", "https://fs-ei.de/workshop.php");
+insert into usFGNewsTable(fgid, news, link) values(2, "Workshop on High-Speed Oscilloscopes Fundamentals on 18.10.2022", "https://fs-ei.de/workshop.php");
+insert into usFGNewsTable(fgid, news, link) values(3, "FG-Sitzung/Meeting every Wednesday, next meeting 18.05.2022", "https://fsmach.uni-stuttgart.de/");
+insert into usFGNewsTable(fgid, news, link) values(3, "Sign up in the Mailing list to get updates here", "https://fsmach.uni-stuttgart.de/maillisten.html");
+insert into usFGNewsTable(fgid, news, link) values(4, "FG-Sitzung/Meeting every Tuesday, next meeting 17.05.2022", "https://chemie.stuvus.uni-stuttgart.de/veranstaltungen/");
+insert into usFGNewsTable(fgid, news, link) values(5, "FG-Sitzung/Meeting every Friday at 13.10, next meeting 20.05.2022", "https://mathe.stuvus.uni-stuttgart.de/aktuelles/");
+insert into usFGNewsTable(fgid, news, link) values(6, "FG-Sitzung/Meeting every Friday at 13:15, next meeting 20.05.2022", "https://fachschaft-physik.de/kontakt/");
+insert into usFGNewsTable(fgid, news, link) values(7, "Join here to meet the Biologie student group for short gathering and partys", "https://tbio.stuvus.uni-stuttgart.de/index.php/studium");
+insert into usFGNewsTable(fgid, news, link) values(8, "FG-Sitzung/Meeting every Monday at 18:30, next meeting 17.05.2022", "https://tbio.stuvus.uni-stuttgart.de/index.php/studium");
+insert into usFGNewsTable(fgid, news, link) values(9, "ISP-Event for International Students with the student representatives groups of Faculty 5", "https://msv.stuvus.uni-stuttgart.de/en/home-2/");
+insert into usFGNewsTable(fgid, news, link) values(10, "For fun and Networking join here FG Simulation Technology", "https://societyofsimtech.de/");
+insert into usFGNewsTable(fgid, news, link) values(11, "Join here for having fun while studying linguistik", "https://linguistik.stuvus.uni-stuttgart.de/links/");
+insert into usFGNewsTable(fgid, news, link) values(12, "Gesprächsrunde mit Herrn Sebastian Schmitt", "https://kunstgeschichte.stuvus.uni-stuttgart.de/gespraechsrunde-mit-herrn-sebastian-schmitt/");
