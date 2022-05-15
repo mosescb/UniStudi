@@ -1,0 +1,25 @@
+create database unistudiDb;
+use unistudiDb;
+
+create table usLoginTable(uid int PRIMARY KEY AUTO_INCREMENT, userName varchar(70), userPass varchar(70));
+insert into usLoginTable values(1, "moses", "testpass");
+insert into usLoginTable values(2, "chris", "mypass");
+
+create table usChecklistTable(cid int PRIMARY KEY AUTO_INCREMENT, subject varchar(100));
+insert into usChecklistTable values(1, "Get into Apartment/WG and sign the Contract");
+insert into usChecklistTable values(2, "Order a SIM Card (online or lidl, kaufland)");
+insert into usChecklistTable values(3, "Complete City Registration at Rathaus");
+insert into usChecklistTable values(4, "Open a Bank Account (Commerzbank / Monese)");
+insert into usChecklistTable values(5, "Register for Health Insurance(private or public)");
+insert into usChecklistTable values(6, "Provide Bank Account Details for Blocked Account Provider");
+insert into usChecklistTable values(7, "Submit documents for enrollment");
+insert into usChecklistTable values(8, "Get your Internet activated in WG/Apartment");
+insert into usChecklistTable values(9, "Activate SemesterTicket on SSB Portal");
+insert into usChecklistTable values(10, "Enquire about Radio Tax and pay Radio Tax");
+
+
+create table usUserChecklistTable(uid int NOT NULL, cid int NOT NULL,  FOREIGN KEY (uid) REFERENCES usLoginTable(uid), FOREIGN KEY (cid) REFERENCES usChecklistTable(cid), CONSTRAINT ucid PRIMARY KEY (uid, cid));
+
+
+create table usFGTable(fgid int PRIMARY KEY, name varchar(70), link varchar(100));
+insert into usFGTable values(1, "Informatik", "https://fius.de/");
