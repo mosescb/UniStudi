@@ -1,8 +1,11 @@
 <div class="grid-container">
+    <div class="row">
+        <button pButton icon="pi pi-arrow-left" class="p-button-rounded p-button-primary" style="margin:10px" (click)="back()"></button>
+    </div>
     <div class="row" style="margin-bottom:10px">
         <div class="col-md-12"
-            style="background-color:rgb(117, 189, 241);border-radius:2px;padding:10px;text-align: center;margin-bottom: 20px;"
-            (click)="openFachgruppePage(group.key)" *ngFor="let group of FGgroups">
+            style="background-color:rgb(117, 189, 241);border-radius:10px;padding:10px;text-align: center;margin-bottom: 20px;"
+            (click)="openFachgruppePage(group.fgid)" *ngFor="let group of FGgroups">
             {{group.name}}
         </div>
     </div>

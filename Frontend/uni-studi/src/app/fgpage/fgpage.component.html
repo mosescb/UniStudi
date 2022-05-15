@@ -1,24 +1,42 @@
 <div class="grid-container">
-    <div class="row" style="margin-bottom:10px">
-        <div class="col-md-12">
-            <!-- <mat-card>
-                <mat-card-title>News Bulletin</mat-card-title>
-                <mat-card-content>
-                  <div *ngFor="let category of categories" class="field-checkbox">
-                    <p-checkbox name="group2" value="category" [value]="category" [(ngModel)]="selectedCategories"
-                      [inputId]="category.key" style="padding:5px"></p-checkbox>
-                    <label [for]="category.key">{{category.name}}</label>
-                  </div>
-                </mat-card-content>
-                <mat-card-actions>
-                    <button pButton class="p-button-primary" label="Save" (click)="checkListSave()" style="margin-right:20px"></button>
-                    Status: &emsp;
-                    <button pButton icon="pi pi-exclamation-circle" class="p-button-rounded p-button-warning"
-                      *ngIf="this.checklist_status === 0"></button>
-                    <button pButton icon="pi pi-check-circle" class="p-button-rounded p-button-success"
-                      *ngIf="this.checklist_status === 1" style="align-content: flex-end;"></button>
-                </mat-card-actions>
-              </mat-card> -->
-        </div>
+  <div class="row">
+    <button pButton icon="pi pi-arrow-left" class="p-button-rounded p-button-primary" style="margin:10px"
+      (click)="back()"></button>
+    <button pButton icon="pi pi-globe" class="p-button-rounded p-button-primary" style="margin:10px"
+      (click)="visitWebsite()"></button>
+  </div>
+  <div class="row" style="height:50%">
+    <div class="col-md-12"
+      style="border-radius:2px;padding:10px;margin-bottom: 20px;">
+      <p-card header="Fachgruppe News Board" subheader="Lets see what your fachgruppe is upto" [style]="{width: '100%'}"
+        styleClass="p-card-shadow">
+        <ul *ngFor="let news of fgNews">
+          <li><a href="{{news.link}}" target="_blank">{{news.news}}</a></li>
+        </ul>
+      </p-card>
     </div>
+  </div>
+  <div class="row" style="height:50%">
+    <div class="col-md-12" style="border-radius:2px;padding:10px">
+      <p-card header="Ask Away" subheader="Let the curiosity drive your ambitions" [style]="{width: '100%'}"
+        styleClass="p-card-shadow">
+        <div class="row">
+          <div class="col-md-6" style="text-align: left;padding:10px">
+            <span class = "chat-bubble" *ngFor="let reply of replyArr">
+              {{reply}} <br><br>
+            </span>
+          </div>
+          <div class="col-md-6" style="text-align: right;padding:10px">
+            <span class = "chat-bubble" *ngFor="let msg of msgArr">
+              {{msg}} <br><br>
+            </span>
+          </div>
+        </div>
+        <div class="row" style="width:100%">
+          <input type="text" pInputText [(ngModel)]="userMsg" />
+          <button pButton icon="pi pi-send" style="margin:10px" (click)="sendMsg()"></button>
+        </div>
+      </p-card>
+    </div>
+  </div>
 </div>

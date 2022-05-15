@@ -31,3 +31,20 @@
 .mat-card-actions{
   display:block
 }
+
+.col-md-12 {
+  /* background-color:rgb(117, 189, 241); */
+  border-radius:2px;
+  padding:10px;
+  margin-bottom: 20px;
+  border-width:1px;
+}
+
+a{
+  text-decoration: none;
+  color:black
+}
+
+.div-color{
+  background-color: rgb(117, 189, 241);
+}

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
 import { GetChecklistDataService } from '../get-checklist-data.service';
 
@@ -9,7 +10,7 @@ import { GetChecklistDataService } from '../get-checklist-data.service';
 })
 export class ChecklistComponent implements OnInit {
 
-  constructor(private getChecklistService: GetChecklistDataService,private auth: AuthService) { }
+  constructor(private getChecklistService: GetChecklistDataService,private auth: AuthService,private router: Router,) { }
 
   checklist_status = 0;
   selectedCategories: any[];
@@ -55,5 +56,9 @@ export class ChecklistComponent implements OnInit {
     }else{
       this.checklist_status = 0
     }
+  }
+
+  back(){
+    this.router.navigateByUrl('/dashboard')
   }
 }

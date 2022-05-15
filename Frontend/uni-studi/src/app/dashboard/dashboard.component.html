@@ -1,15 +1,20 @@
 <div class="grid-container">
   <div class="row" style="margin-bottom:10px">
-    <div class="col-md-12"
-      style="background-color:rgb(117, 189, 241);border-radius:2px;padding:10px;text-align: center;"
+    <div class="col-md-12 div-color"
+      style="border-radius:2px;padding:10px;text-align: center;"
       (click)="openChecklist()">
       Visit Checklist
     </div>
   </div>
+  <div class="row" style="margin-bottom:10px">
+    <div class="col-md-12 div-color"
+      style="border-radius:2px;padding:10px;text-align: center;"
+      (click)="openStuvusPage()">
+      Meet your Student's Council : STUVUS
+    </div>
+  </div>
   <div class="row">
-    <div class="col-md-12"
-      style="background-color:rgb(117, 189, 241);border-radius:2px;padding:10px;margin-bottom: 20px;"
-      (click)="openFGDashboard()">
+    <div class="col-md-12" (click)="openFGDashboard()">
       <p-card header="FachGruppe (Student Group)" subheader="Get to know the student representatives" [style]="{width: '100%'}"
         styleClass="p-card-shadow">
         <p>Did you know that each department at University of Stuttgart has a group of students to represent your course of study?
@@ -20,14 +25,21 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-md-12"
-      style="background-color:rgb(117, 189, 241);border-radius:2px;padding:10px;">
+    <div class="col-md-12">
       <p-card header="University News" subheader="Lets see what is happening around in the University" [style]="{width: '100%'}"
         styleClass="p-card-shadow">
         <ul *ngFor="let news of uniNews">
-          <li>{{news}}</li>
+          <li><a href={{news.link}} target="_blank">{{news.title}}</a></li>
         </ul>
       </p-card>
+      <!-- <mat-card>
+        <mat-card-title>University News</mat-card-title>
+        <mat-card-content>
+          <ul *ngFor="let news of uniNews">
+            <li><a href={{news.link}} target="_blank">{{news.title}}</a></li>
+          </ul>
+        </mat-card-content>
+      </mat-card> -->
     </div>
   </div>
 </div>

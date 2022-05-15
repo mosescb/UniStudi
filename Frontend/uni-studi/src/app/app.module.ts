@@ -31,6 +31,7 @@ import {CardModule} from 'primeng/card';
 import { FGDashboardComponent } from './fgdashboard/fgdashboard.component';
 import { FGPageComponent } from './fgpage/fgpage.component';
 import { UniNewsComponent } from './uni-news/uni-news.component';
+import {InputTextModule} from 'primeng/inputtext';
 
 @NgModule({
   declarations: [
@@ -66,7 +67,8 @@ import { UniNewsComponent } from './uni-news/uni-news.component';
     FormsModule,
     ReactiveFormsModule,
     CheckboxModule,
-    CardModule
+    CardModule,
+    InputTextModule
   ],
   providers: [GetChecklistDataService],
   bootstrap: [AppComponent]

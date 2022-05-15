@@ -25,4 +25,16 @@ export class GetChecklistDataService {
     const resp = this.http.post(this.url + 'saveChecklist',queryParams,options);
     return resp;
   }
+
+  public getFGDetails(uname):Observable<any> {
+    let queryParams = {'uname':uname}
+    const resp = this.http.post(this.url + 'fglist',queryParams);
+    return resp;
+  }
+
+  public getFGNewsDetails(fgid):Observable<any> {
+    let queryParams = {'fgid':fgid}
+    const resp = this.http.post(this.url + 'fgnewslist',queryParams);
+    return resp;
+  }
 }
