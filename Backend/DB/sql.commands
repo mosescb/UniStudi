@@ -22,4 +22,15 @@ create table usUserChecklistTable(uid int NOT NULL, cid int NOT NULL,  FOREIGN K
 
 
 create table usFGTable(fgid int PRIMARY KEY, name varchar(70), link varchar(100));
-insert into usFGTable values(1, "Informatik", "https://fius.de/");
+insert into usFGTable values(1, "Fachgruppe Informatik", "https://fius.de/");
+insert into usFGTable values(2, "Fachgruppe Elektrotechnik und Informationstechnik", "https://www.ei.faveve.uni-stuttgart.de/");
+insert into usFGTable values(3, "Fachgruppe Maschinenbau", "https://fsmach.uni-stuttgart.de/index.html");
+insert into usFGTable values(4, "Fachgruppe Chemie", "https://chemie.stuvus.uni-stuttgart.de/");
+insert into usFGTable values(5, "Fachgruppe Mathematik", "https://mathe.stuvus.uni-stuttgart.de/");
+insert into usFGTable values(6, "Fachgruppe Physik", "https://fachschaft-physik.de/");
+insert into usFGTable values(7, "Fachgruppe Technische Biologie", "https://tbio.stuvus.uni-stuttgart.de/");
+insert into usFGTable values(8, "Fachgruppe Architektur", "https://faus.stuvus.uni-stuttgart.de/");
+insert into usFGTable values(9, "Fachgruppe Maschinelle Sprachverarbeitung und Computerlinguistik", "https://msv.stuvus.uni-stuttgart.de/en/home-2/");
+insert into usFGTable values(10, "Fachgruppe Simulation Technology", "https://simtech.stuvus.uni-stuttgart.de/");
+insert into usFGTable values(11, "Fachgruppe Linguistik", "https://linguistik.stuvus.uni-stuttgart.de/");
+insert into usFGTable values(12, "Fachgruppe Kunstgeschichte", "https://kunstgeschichte.stuvus.uni-stuttgart.de/");
