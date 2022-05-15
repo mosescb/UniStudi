@@ -32,6 +32,7 @@ DATABASE             = config.get_db_name()
 LOGIN_TABLE          = config.get_login_table()
 CHECKLIST_TABLE      = config.get_checklist_table()
 USER_CHECKLIST_TABLE = config.get_user_checklist_table()
+FGLIST_TABLE         = config.get_fg_list_table()
 
 
 #--------------------------------------
@@ -180,6 +181,33 @@ def save_checklist():
         return status
 
     return status
+
+
+#--------------------------------------
+# FGLIST  BASEURL/fglist
+#--------------------------------------
+@app.route("/fglist",methods=["POST"])
+def get_fglist():
+    json_data = []
+    try:
+        # Connect to the Database
+        conn = mysql.connect(host=HOST, database=DATABASE, user=USER, password=PASSWORD)
+        cursor = conn.cursor()
+
+        query = "select * from  " + FGLIST_TABLE
+        execute_sql_cmd(cursor, query)
+        row_headers=[x[0] for x in cursor.description]
+        rv = cursor.fetchall()
+        for result in rv:
+            json_data.append(dict(zip(row_headers,result)))
+
+        # Close the opened connection
+        conn.close()
+
+    except Error as e:
+        print("SQL Error: "+str(e))
+
+    return json.dumps(json_data)
 
 
 #--------------------------------------

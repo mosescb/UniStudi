@@ -32,6 +32,7 @@ class BackendConfig():
                 self._tables_login = None
                 self._tables_checklist = None
                 self._tables_userchecklist = None
+                self._tables_fglist = None
 
                 try:
                         # Server Config
@@ -47,6 +48,7 @@ class BackendConfig():
                         self._tables_login = config['TABLES']['Login']
                         self._tables_checklist = config['TABLES']['Checklist']
                         self._tables_userchecklist = config['TABLES']['UserChecklist']
+                        self._tables_fglist = config['TABLES']['FGList']
 
                 except:
                         print("Failed to obtain data from config file")
@@ -76,3 +78,6 @@ class BackendConfig():
 
         def get_user_checklist_table(self):
                 return self._tables_userchecklist
+
+        def get_fg_list_table(self):
+                return self._tables_fglist
